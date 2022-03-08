@@ -6,23 +6,23 @@ class Pages extends BaseController
 {
     public function index()
     {
-        $data=[
-            "title"=>"Home"
+        $data = [
+            "title" => "Home"
         ];
         return view('pages/home', $data);
     }
 
     public function about()
     {
-        $data=[
-            "title"=>"About Me"
+        $data = [
+            "title" => "About Me"
         ];
         return view('pages/about', $data);
     }
     public function contact()
     {
-        $data=[
-            "title"=>"Contact Us"
+        $data = [
+            "title" => "Contact Us"
         ];
         return view('pages/contact', $data);
     }
