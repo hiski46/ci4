@@ -16,7 +16,7 @@
                             <p class="card-text"><small class="text-muted"><b>Penerbit : <?= $komik['penerbit']; ?></b></small></p>
                             <a href="/crud/komik/<?= $komik['slug']; ?>" class="btn btn-warning">Edit</a>
 
-                            <form class="d-inline" action="/crud/komik/<?= $komik['id']; ?>" method="post">
+                            <form class="d-inline" action="/komik/<?= $komik['id']; ?>" method="post">
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin?');"> Delete</button>
