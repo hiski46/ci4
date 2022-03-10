@@ -23,6 +23,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/crud/orang">Orang</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth">login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user">Tabel</a>
+                </li>
             </ul>
         </div>
     </div>
