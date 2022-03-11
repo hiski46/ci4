@@ -17,7 +17,8 @@ class User extends BaseController
     {
         $data = [
             'title' => 'Hiskia Perdamen Pulungan',
-            'orang' => $this->orangModel->paginate(10)
+            'orang' => $this->orangModel->paginate(10),
+            'pager' => $this->orangModel->pager
         ];
 
         return  view('Modules\User\Views\user', $data);

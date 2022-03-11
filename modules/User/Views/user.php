@@ -353,7 +353,8 @@
         </nav>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
-            <?= table('Tabel Test', ['Nama', 'Alamat'], $orang, ['nama', 'alamat']); ?>
+
+            <?= table('Tabel Test', ['Nama', 'Alamat', 'surat' => ['lama', 'baru', 'sedang']], $orang, ['nama', 'alamat']) ?>
             <!-- <div class="row">
                 <div class="col-12">
                     <div class="card mb-4">
@@ -611,6 +612,7 @@
                 </div>
             </footer>
         </div>
+
     </main>
     <div class="fixed-plugin">
         <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -692,6 +694,16 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
+    <script>
+        var location = $('#zone').offset();
+
+        $('#notificationModal').css("margin-top", location.top - 100);
+        $('#notificationModal').modal('show');
+        $('#notificationModal').fadeTo(3000, 500).slideUp(500, function() {
+            $(this).remove();
+        });
+    </script>
+
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
