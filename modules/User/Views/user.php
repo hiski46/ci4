@@ -31,8 +31,10 @@
     <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
+
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 </head>
 
@@ -695,12 +697,21 @@
         }
     </script>
     <script>
-        var location = $('#zone').offset();
+        $(document).ready(function() {
+            $('td[name="action"]').hide();
+            $('tr[id|="zone"]').click(function() {
+                var id = $(this).attr('name');
+                //alert(id);
+                $('td[id="' + id + '"]').toggle();
+                $('td[id="data' + id + '"]').toggle();
+            });
+            $('tr[id|="zone"]').mouseleave(function() {
+                var id = $(this).attr('name');
+                //alert(id);
+                $('td[id="' + id + '"]').hide();
+                $('td[id="data' + id + '"]').show();
+            });
 
-        $('#notificationModal').css("margin-top", location.top - 100);
-        $('#notificationModal').modal('show');
-        $('#notificationModal').fadeTo(3000, 500).slideUp(500, function() {
-            $(this).remove();
         });
     </script>
 

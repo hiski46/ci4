@@ -24,5 +24,16 @@ class User extends BaseController
         return  view('Modules\User\Views\user', $data);
     }
 
+    public function table()
+    {
+
+        $data = [
+            'title' => 'Hiskia Perdamen Pulungan',
+            'orang' => $this->orangModel->paginate(10),
+            'pager' => $this->orangModel->pager
+        ];
+
+        return  view('Modules\User\Views\table', $data);
+    }
     //--------------------------------------------------------------------
 }

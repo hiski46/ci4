@@ -17,6 +17,8 @@ use PhpParser\Node\Expr\Cast\Bool_;
 function table(string $title = '', $col = [], $data = [], $key = [], $action = true)
 {
     $head = tampil($col, array_depth($col), 1);
+    $totalLength = array_length_child($col);
+
     $tr = [];
     $html = '
     <div class="row">
@@ -34,9 +36,9 @@ function table(string $title = '', $col = [], $data = [], $key = [], $action = t
         $tr[$v['level']][] = '<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" rowspan=' . $v['row'] . ' colspan=' . $v['col'] . '>' . $v['title'] . '</th>';
     }
     //Coloum Action
-    if ($action == true) {
-        $tr[1][] = '<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" rowspan=' . array_depth($col) . ' colspan=' . 1 . '>' . "Action" . '</th>';
-    }
+    // if ($action == true) {
+    //     $tr[1][] = '<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" rowspan=' . array_depth($col) . ' colspan=' . 1 . '>' . "Action" . '</th>';
+    // }
     foreach ($tr as $k => $v) {
         $html .= '<tr>' . implode("", $v) . '</tr>';
     }
@@ -47,18 +49,20 @@ function table(string $title = '', $col = [], $data = [], $key = [], $action = t
     foreach ($data as $d) {
 
         $html .= ' 
-        <tr id="zone">';
+        <tr id="zone" name="' . $d['id'] . '">';
+        if ($action == true) {
+            $html .= '<td class="text-center" id="' . $d['id'] . '" name="action" colspan=' . $totalLength . '>
+                <button class="btn btn-block btn-primary" > Detail </button>
+                <button class="btn btn-block btn-danger" > Hapus </button>
+            </td>';
+        }
         foreach ($key as $k) {
 
-            $html .= '<td>' .
+            $html .= '<td id=data' . $d['id'] . '>' .
                 $d[$k]
                 . '</td>';
         }
-        if ($action == true) {
-            $html .= '<td>
-                <a class = "btn btn-primary"> Detail </a>
-            </td>';
-        }
+
         $html .= '</tr>';
     }
     $html .= '</tbody>
