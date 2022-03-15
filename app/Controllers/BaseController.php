@@ -35,7 +35,12 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['my_helper', 'component_view_helper'];
+    protected $helpers = [
+        'component_table_header_helper',
+        'component_button_helper',
+        'component_input_helper',
+        'component_breadcrumb_helper',
+    ];
 
     /**
      * Constructor.
