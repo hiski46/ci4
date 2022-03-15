@@ -2,13 +2,12 @@
 
 /**
  * This helper function for generate tag basic button
- * @param string $type 'button|submit|reset'
  * @param string $text
  * @param array $class
  * @param array $attribute
  * @return html
  */
-function basicButton(string $type, string $text, array $class = [], array $attribute = [])
+function button(string $text, array $class = [], array $attribute = [])
 {
     $stringClass = implode(' ', $class);
     $stringAttribute = '';
