@@ -6,6 +6,6 @@ class Asdf extends BaseController
 {
     public function asdf()
     {
-        echo "asdf";
+        return view("asdf");
     }
 }
