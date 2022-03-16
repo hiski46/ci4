@@ -13,12 +13,17 @@ function input(string $type = 'text', string $name = '', string $placeholder = '
 {
     $stringClass = implode(' ', $class);
     $stringAttribute = '';
+    $temp = '';
     foreach ($attribute as $k => $v) {
-        $stringAttribute .= ' ' . $k . '="' . $v . '" ';
+        if (is_int($k)) {
+            $temp = $v;
+        } else {
+            $stringAttribute .= ' ' . $k . '="' . $v . '" ';
+        }
     }
     $html = '';
     $html .= '
-             <input type="' . $type . '" name="' . $name . '" class="' . (($type == "checkbox" || $type == "radio") ? "form-check-input" : "form-control") . ' mb-1' . $stringClass . '" placeholder="' . $placeholder . '" ' . $stringAttribute . ' autofocus>
+             <input type="' . $type . '" name="' . $name . '" class="' . (($type == "checkbox" || $type == "radio") ? "form-check-input" : "form-control") . ' mb-1' . $stringClass . '" placeholder="' . $placeholder . '" ' . $stringAttribute . ' ' . $temp . ' autofocus />
 
              ';
     return $html;
@@ -84,18 +89,22 @@ function inputWithFormGroup(string $label = '', string $type = 'text', string $n
  * This helper function for generate checkbox
  * 
  * @param string $name untuk atribut name pada tag input
- * @param array $label | ['Laki-laki' => 'l', 'Perempuan' => 'p']
+ * @param array $label | ['Create Group' => 'CG', 'Delete Group' => 'DG']
+ * @param array $selected | ['CG', 'DG']
  * @param array|null $atribut untuk tambahan atribut pada tag input
  * 
  * @return string
  */
 
-function checkbox(string $name, array $label = ['' => '', '' => ''],  array $atribut = [])
+function checkbox(string $name, array $label = ['' => '', '' => ''], array $selected = [], array $atribut = [])
 {
     $html = '';
     foreach ($label as $k => $v) {
         $html .= '<div class="form-check mb-1">';
         $new_atribut = $atribut;
+        if (in_array($v, $selected)) {
+            array_push($new_atribut, 'checked');
+        }
         $new_atribut['value'] = $v;
         $html .= input('checkbox', $name, '', [], $new_atribut);
         $html .= '<label class="custom-control-label" >' . $k . '</label>';
@@ -123,7 +132,7 @@ function radio(string $name, array $label = ['' => '', '' => ''], string $checke
         $html .= '<div class="form-check mb-1">';
         $new_atribut = $atribut;
         if ($v == $checked) {
-            $new_atribut['checked'] = 'checked';
+            array_push($new_atribut, 'checked');
         }
         $new_atribut['value'] = $v;
         $html .= input('radio', $name, '', [], $new_atribut);

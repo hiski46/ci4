@@ -11,15 +11,20 @@ function select(string $name = '', array $option = [], string $selected = '', ar
 {
     $stringClass = implode(' ', $class);
     $stringAttribute = '';
+    $temp = '';
     foreach ($attribute as $k => $v) {
-        $stringAttribute .= ' ' . $k . '="' . $v . '" ';
+        if (is_int($k)) {
+            $temp = $v;
+        } else {
+            $stringAttribute .= ' ' . $k . '="' . $v . '" ';
+        }
     }
     $optionHtml = '';
     foreach ($option as $o => $v) {
         $optionHtml .= '<option value="' . $o . '" ' . (($o == $selected) ? 'selected' : '') . '>' . $v . '</option>';
     }
     $html = '
-        <select class="form-control selectpicker ' . $stringClass . '"  name="' . $name . '" ' . $stringAttribute . '>
+        <select class="form-control selectpicker ' . $stringClass . '"  name="' . $name . '" ' . $stringAttribute . ' ' . $temp . '>
             ' . $optionHtml . '
         </select>
     ';
