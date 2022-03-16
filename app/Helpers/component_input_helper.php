@@ -18,9 +18,11 @@ function input(string $label = '', string $type = 'text', string $name = '', str
         $stringAttribute .= ' ' . $k . '="' . $v . '" ';
     }
     $html = '';
-    $html .= '<label>' . $label . '</label>
-              <input type="' . $type . '" name="' . $name . '" class="form-control mb-1' . $stringClass . '" placeholder="' . $placeholder . '" ' . $attribute . ' autofocus>
-              <p class="text-danger" ' . $name . 'Err></p>
-              ';
+    $html .= '<div class="form-group">
+                <label>' . $label . '</label>
+                <input type="' . $type . '" name="' . $name . '" class="form-control mb-1' . $stringClass . '" placeholder="' . $placeholder . '" ' . $attribute . ' autofocus>
+                <p class="text-danger mt-1" ' . $name . 'Err></p>
+              </div>
+                ';
     return $html;
 }
