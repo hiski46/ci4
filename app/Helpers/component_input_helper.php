@@ -53,6 +53,7 @@ function inputGroupWithFormGroup(string $label = '', array $data = [], array $cl
             </div>
         </div>
     ';
+    return $html;
 }
 
 /**
@@ -67,11 +68,7 @@ function inputGroupWithFormGroup(string $label = '', array $data = [], array $cl
  */
 function inputWithFormGroup(string $label = '', string $type = 'text', string $name = '', string $placeholder = '', array $class = [], array $attribute = [])
 {
-    $stringClass = implode(' ', $class);
-    $stringAttribute = '';
-    foreach ($attribute as $k => $v) {
-        $stringAttribute .= ' ' . $k . '="' . $v . '" ';
-    }
+
 
     $html = '';
     $html .= '<div class="form-group">
