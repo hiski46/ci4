@@ -2,7 +2,7 @@
 
 /**
  * This helper function for generate tag input
- * @param string $type = "text"|"email"|"number"|"date"|"checkbox"|"radio"
+ * @param string $type = "text"|"email"|"number"|"date"|"checkbox"|"radio"|"file"
  * @param string $name
  * @param string $placeholder
  * @param array $class // default is null, if you add other class input in array to $class ex: ["form-add","form-test"]
@@ -59,7 +59,7 @@ function inputGroupWithFormGroup(string $label = '', array $data = [], array $cl
 /**
  * This helper function for generate tag input with form group
  * @param string $label
- * @param string $type = "text"|"email"|"number"|"date"
+ * @param string $type = "text"|"email"|"number"|"date"|"checkbox"|"radio"|"file"
  * @param string $name
  * @param string $placeholder
  * @param array $class // default is null, if you add other class input in array to $class ex: ["form-add","form-test"]
@@ -68,8 +68,6 @@ function inputGroupWithFormGroup(string $label = '', array $data = [], array $cl
  */
 function inputWithFormGroup(string $label = '', string $type = 'text', string $name = '', string $placeholder = '', array $class = [], array $attribute = [])
 {
-
-
     $html = '';
     $html .= '<div class="form-group">
                 <label>' . $label . '</label>
