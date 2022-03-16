@@ -5,16 +5,14 @@ use PhpParser\Node\Expr\Cast\Bool_;
 
 /**
  * This Function for generate table
- * @param string $title Judul Tabel
+ * @param string $id untuk atribut "id" di tag tbody 
  * @param array|null $col Nama-nama kolom
- * @param array|null $data Data tabel
- * @param array|null $key key dari data table
- * @param boolean|false $pagination untuk menentukan apakah membutuhkan fitur pagination
+ * @param string|null $title Judul tabel
  * 
  * @return string
  */
 
-function table(string $title = '', $col = [], $data = [], $key = [], $action = true)
+function tableHeader(string $id = '', $col = [], string $title = null)
 {
     $head = tampil($col, array_depth($col), 1);
     $totalLength = array_length_child($col);
@@ -45,27 +43,9 @@ function table(string $title = '', $col = [], $data = [], $key = [], $action = t
 
     $html .= '
                 </thead>
-                                    <tbody>';
-    foreach ($data as $d) {
-
-        $html .= ' 
-        <tr id="zone" name="' . $d['id'] . '">';
-        if ($action == true) {
-            $html .= '<td class="text-center" id="' . $d['id'] . '" name="action" colspan=' . $totalLength . '>
-                <button class="btn btn-block btn-primary" > Detail </button>
-                <button class="btn btn-block btn-danger" > Hapus </button>
-            </td>';
-        }
-        foreach ($key as $k) {
-
-            $html .= '<td id=data' . $d['id'] . '>' .
-                $d[$k]
-                . '</td>';
-        }
-
-        $html .= '</tr>';
-    }
-    $html .= '</tbody>
+                    <tbody id="' . $id . '">
+    
+                    </tbody>
                                 </table>
                             </div>
                         </div>
