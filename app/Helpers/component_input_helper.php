@@ -19,6 +19,7 @@ function input(string $type = 'text', string $name = '', string $placeholder = '
     $html = '';
     $html .= '
              <input type="' . $type . '" name="' . $name . '" class="' . (($type == "checkbox" || $type == "radio") ? "form-check-input" : "form-control") . ' mb-1' . $stringClass . '" placeholder="' . $placeholder . '" ' . $stringAttribute . ' autofocus>
+
              ';
     return $html;
 }
@@ -70,7 +71,8 @@ function inputWithFormGroup(string $label = '', string $type = 'text', string $n
     $html = '';
     $html .= '<div class="form-group">
                 <label>' . $label . '</label>
-                <input type="' . $type . '" name="' . $name . '" class="form-control mb-1' . $stringClass . '" placeholder="' . $placeholder . '" ' . $stringAttribute . ' autofocus>
+
+                ' . input($type, $name, $placeholder, $class, $attribute) . '
                 <p class="text-danger mt-1" ' . $name . 'Err></p>
               </div>
                 ';
