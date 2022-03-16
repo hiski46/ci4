@@ -357,10 +357,14 @@
                 </div>
             </div>
         </nav>
+
+
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
                 <?php echo checkbox('listPermission', ['Create Group' => 'CG', 'Delete Group' => 'DG', 'Create User' => 'CU'], ['DG', 'CU']) ?>
+                <hr>
+                <?php echo toggle('listPermission', ['Create Group' => 'CG'], ['CG']) ?>
                 <hr>
                 <?php echo radio('jenisKelamin', ['Laki-laki' => 'l', 'Perempuan' => 'p'], 'p'); ?>
             </div>

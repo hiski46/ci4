@@ -93,11 +93,39 @@ function inputWithFormGroup(string $label = '', string $type = 'text', string $n
  * @return string
  */
 
-function checkbox(string $name, array $label = ['' => '', '' => ''], array $selected = [], array $atribut = [])
+function checkbox(string $name, array $label = [], array $selected = [], array $atribut = [])
 {
     $html = '';
     foreach ($label as $k => $v) {
         $html .= '<div class="form-check mb-1">';
+        $new_atribut = $atribut;
+        if (in_array($v, $selected)) {
+            array_push($new_atribut, 'checked');
+        }
+        $new_atribut['value'] = $v;
+        $html .= input('checkbox', $name, '', [], $new_atribut);
+        $html .= '<label class="custom-control-label" >' . $k . '</label>';
+        $html .= '</div>';
+    }
+
+    return $html;
+}
+/**
+ * This helper function for generate checkbox
+ * 
+ * @param string $name untuk atribut name pada tag input
+ * @param array $label | ['Create Group' => 'CG']
+ * @param array $selected | ['CG', 'DG']
+ * @param array|null $atribut untuk tambahan atribut pada tag input
+ * 
+ * @return string
+ */
+
+function toggle(string $name, array $label = [], array $selected = [], array $atribut = [])
+{
+    $html = '';
+    foreach ($label as $k => $v) {
+        $html .= '<div class="form-check form-switch mb-1">';
         $new_atribut = $atribut;
         if (in_array($v, $selected)) {
             array_push($new_atribut, 'checked');
@@ -122,7 +150,7 @@ function checkbox(string $name, array $label = ['' => '', '' => ''], array $sele
  * 
  * @return string
  */
-function radio(string $name, array $label = ['' => '', '' => ''], string $checked = '',  array $atribut = [])
+function radio(string $name, array $label = [], string $checked = '',  array $atribut = [])
 {
     $html = '';
     foreach ($label as $k => $v) {
