@@ -2,6 +2,32 @@
 <?
 /**
  * This function for generate select
+ * @param string $name
+ * @param array $option | ["value"=>"text", "value 2"=>"text 2"]
+ * @param string $selected
+ * @return html
+ */
+function select(string $name = '', array $option = [], string $selected = '', array $class = [], array $attribute = [])
+{
+    $stringClass = implode(' ', $class);
+    $stringAttribute = '';
+    foreach ($attribute as $k => $v) {
+        $stringAttribute .= ' ' . $k . '="' . $v . '" ';
+    }
+    $optionHtml = '';
+    foreach ($option as $o => $v) {
+        $optionHtml .= '<option value="' . $o . '" ' . (($o == $selected) ? 'selected' : '') . '>' . $v . '</option>';
+    }
+    $html = '
+        <select class="form-control selectpicker ' . $stringClass . '"  name="' . $name . '" ' . $stringAttribute . '>
+            ' . $optionHtml . '
+        </select>
+    ';
+    return $html;
+}
+
+/**
+ * This function for generate select
  * @param string $id
  * @param string $label
  * @param string $name
@@ -9,18 +35,15 @@
  * @param string $selected
  * @return html
  */
-function select(string $id = '', string $label = '', string $name = '', array $option = [], string $selected = '')
+function selectWithFormGroup(string $id = '', string $label = '', string $name = '', array $option = [], string $selected = '')
 {
-    $optionHtml = '';
-    foreach ($option as $o => $v) {
-        $optionHtml .= '<option value="' . $o . '" ' . (($o == $selected) ? 'selected' : '') . '>' . $v . '</option>';
-    }
+
     $html = '
     <div class="form-group">
         <label for="' . $id . '">' . $label . '</label>
-        <select class="form-control selectpicker" id="' . $id . '" name="' . $name . '">
-            ' . $optionHtml . '
-        </select>
+        '
+        . select($name, $option, $selected, [], ["id" => $id]) .
+        '
         <p class="text-danger mt-1" ' . $name . 'Err></p>
     </div>
     ';
